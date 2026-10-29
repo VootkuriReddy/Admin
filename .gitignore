@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+test-results/
+*.local
+.env
+
+# editor/launch session state
+.claude/launch.json

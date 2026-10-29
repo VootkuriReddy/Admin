@@ -1,0 +1,36 @@
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+
+export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  label: string;
+  isOn?: boolean;
+  className?: string;
+  children?: ReactNode;
+}
+
+export function IconButton({
+  label,
+  isOn,
+  className,
+  type = "button",
+  children,
+  ...props
+}: IconButtonProps) {
+  return (
+    <button
+      type={type}
+      className={[
+        "icon-btn",
+        className,
+        typeof isOn === "boolean" && isOn ? "is-on" : undefined,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      aria-label={label}
+      title={props.title ?? label}
+      aria-pressed={typeof isOn === "boolean" ? Boolean(isOn) : undefined}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
